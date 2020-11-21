@@ -2109,6 +2109,16 @@ class LibvirtConfigGuestFeature(LibvirtConfigObject):
         super(LibvirtConfigGuestFeature, self).__init__(root_name=name,
                                                         **kwargs)
 
+class LibvirtConfigGuestFeatureGIC(LibvirtConfigGuestFeature):
+
+    def __init__(self, **kwargs):
+        super(LibvirtConfigGuestFeatureGIC, self).__init__("gic",
+                                                           **kwargs)
+
+    def format_dom(self):
+        root = super(LibvirtConfigGuestFeatureGIC, self).format_dom()
+        root.set("version", '3')
+        return root
 
 class LibvirtConfigGuestFeatureACPI(LibvirtConfigGuestFeature):
 
