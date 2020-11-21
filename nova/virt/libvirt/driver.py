@@ -4675,7 +4675,8 @@ class LibvirtDriver(driver.ComputeDriver):
         if (virt_type in ("qemu", "kvm") and
                 image_meta.properties.get('img_hide_hypervisor_id')):
             guest.features.append(vconfig.LibvirtConfigGuestFeatureKvmHidden())
-
+        mygic = vconfig.LibvirtConfigGuestFeatureGIC()
+        guest.features.append(mygic)
     def _check_number_of_serial_console(self, num_ports):
         virt_type = CONF.libvirt.virt_type
         if (virt_type in ("kvm", "qemu") and
